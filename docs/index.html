@@ -2,118 +2,129 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Blue Devil Pizza Lab 🍕</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      color: #222;
-      line-height: 1.6;
+    :root{
+      --blue:#003366; --blue-d:#00264d; --gold:#f1b434;
+      --bg:#f6f8fc; --card:#ffffff; --text:#222; --muted:#667;
+      --radius:14px; --shadow:0 6px 20px rgba(0,0,0,.08);
     }
-    header {
-      background: #003366;
-      color: #fff;
-      text-align: center;
-      padding: 2rem 1rem;
+    *{box-sizing:border-box}
+    body{
+      font-family:'Roboto',system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      margin:0; color:var(--text); background:var(--bg); line-height:1.6;
     }
-    header h1 {
-      margin: 0 0 .5rem 0;
-      font-size: 2.25rem;
-      font-weight: 700;
+    .container{max-width:1000px;margin:0 auto;padding:20px}
+    header{
+      background:linear-gradient(135deg, var(--blue), var(--blue-d));
+      color:#fff;
     }
-    header p {
-      font-size: 1.1rem;
-      font-weight: 300;
-      margin: 0;
+    .headbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{height:42px;width:auto}
+    .badge{display:inline-flex;gap:8px;align-items:center;font-size:12px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25)}
+    .hero{padding:28px 20px 32px}
+    .hero h1{margin:0 0 .4rem 0;font-size:clamp(28px,5vw,40px);font-weight:700}
+    .hero p{margin:0;color:#e8eef7}
+    .button{display:inline-block;background:var(--gold);color:#1b1b1b;padding:.7rem 1rem;border-radius:10px;text-decoration:none;font-weight:700;margin-top:1rem}
+    section{
+      background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+      padding:1.5rem; margin:1.25rem 20px;
     }
-    section {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    h2{color:var(--blue); margin-top:0; border-bottom:2px solid var(--blue); padding-bottom:.45rem}
+    /* pricing cards */
+    .grid{display:grid; gap:16px}
+    @media(min-width:720px){ .grid{grid-template-columns:repeat(3,1fr)} }
+    .card{background:#fff;border:1px solid #eef2f7;border-radius:12px;padding:14px}
+    .card h3{margin:.2rem 0 .3rem 0}
+    .price{font-size:24px;font-weight:800;margin:.2rem 0 .4rem 0}
+    .muted{color:var(--muted);font-size:.95rem}
+    /* table wrapper for responsiveness */
+    .table-wrap{overflow:auto;border:1px solid #eef2f7;border-radius:12px}
+    table{width:100%;border-collapse:collapse;min-width:520px}
+    th,td{padding:.75rem 1rem;border-bottom:1px solid #eef2f7;text-align:left}
+    th{background:#f2f6ff}
+    footer{
+      text-align:center;padding:1.2rem 20px;background:var(--blue);color:#fff;font-size:.95rem;margin-top:1.25rem
     }
-    h2 {
-      color: #003366;
-      border-bottom: 2px solid #003366;
-      padding-bottom: 0.5rem;
-      margin-top: 0;
-    }
-    ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-    }
-    ul li {
-      background: #e8f0fe;
-      margin: 0.5rem 0;
-      padding: 0.7rem 1rem;
-      border-radius: 6px;
-    }
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      background: #003366;
-      color: #fff;
-      font-size: 0.9rem;
-      margin-top: 2rem;
-    }
-    a.button {
-      display: inline-block;
-      background: #003366;
-      color: #fff;
-      padding: 0.8rem 1.2rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 500;
-      margin-top: 1rem;
-      transition: background 0.2s ease-in-out;
-    }
-    a.button:hover { background: #00264d; }
   </style>
 </head>
 <body>
   <header>
-    <h1>🍕 Blue Devil Pizza Lab</h1>
-    <p>Developed by UW-Stout DevNet Students – Deploying Real-World Python Apps</p>
+    <div class="container headbar">
+      <div class="brand">
+        <!-- Optional logo -->
+        <!-- <img src="./images/blue-devil.png" alt="UW-Stout Blue Devils"> -->
+        <strong>Blue Devil Pizza Lab</strong>
+      </div>
+      <!-- Version badge (auto-fills from docs/version.json) -->
+      <span class="badge" id="verBadge" title="Current release">Version: loading…</span>
+    </div>
+    <div class="container hero">
+      <h1>🍕 UW-Stout DevNet Project</h1>
+      <p>Python backend + Git workflows + PyTest + GitHub Pages deployment</p>
+      <a class="button" href="https://github.com/chadschertz/pizzalabstarter" target="_blank" rel="noopener">View Repository</a>
+    </div>
   </header>
 
-  <section>
+  <section class="container">
     <h2>About This Project</h2>
     <p>This project is part of the DevNet course at the University of Wisconsin-Stout. Students build a simple pizza-ordering backend in Python, practice Git workflows, virtual environments, and automated testing with <code>pytest</code>, and deploy the final product as a static website using GitHub Pages.</p>
   </section>
 
-  <section>
+  <section class="container">
     <h2>Menu Highlights</h2>
-    <ul>
-      <li>🍕 Small Pizza – $8.00</li>
-      <li>🍕 Medium Pizza – $11.00</li>
-      <li>🍕 Large Pizza – $14.00</li>
-      <li>🥓 Extra Toppings – +$1.50 each</li>
-    </ul>
+    <div class="grid">
+      <div class="card">
+        <h3>Small Pizza</h3>
+        <div class="price">$8.00</div>
+        <p class="muted">Classic cheese. Add toppings for +$1.50 each.</p>
+      </div>
+      <div class="card">
+        <h3>Medium Pizza</h3>
+        <div class="price">$11.00</div>
+        <p class="muted">Perfect for two. Thin or hand-tossed.</p>
+      </div>
+      <div class="card">
+        <h3>Large Pizza</h3>
+        <div class="price">$14.00</div>
+        <p class="muted">Study-group approved. Gluten-free +$2.</p>
+      </div>
+    </div>
   </section>
 
-  <section>
+  <section class="container">
     <h2>Promo Codes</h2>
-    <ul>
-      <li><strong>STUDENT10</strong> – 10% off your order</li>
-      <li><strong>LARGE2</strong> – 10% off two or more large pizzas</li>
-    </ul>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Code</th><th>Discount</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>STUDENT10</strong></td><td>10% off</td><td>Valid with student ID</td></tr>
+          <tr><td><strong>LARGE2</strong></td><td>10% off</td><td>Two or more large pizzas</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
-  <section style="text-align:center;">
+  <section class="container" style="text-align:center">
     <h2>See the Code</h2>
     <p>Explore the full source code and deployment workflow on GitHub.</p>
-    <a href="https://github.com/chadschertz/pizzalabstarter" class="button" target="_blank">View Repository</a>
+    <a href="https://github.com/chadschertz/pizzalabstarter" class="button" target="_blank" rel="noopener">Open Repository</a>
   </section>
 
   <footer>
-    &copy; 2025 University of Wisconsin-Stout | Blue Devil Pizza Lab 🍕
+    © <span id="year"></span> University of Wisconsin-Stout · Blue Devil Pizza Lab 🍕
   </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Version badge from docs/version.json (static file committed with each release)
+    fetch('./version.json', {cache: 'no-store'})
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(d => document.getElementById('verBadge').textContent = 'Version: ' + (d.tag || 'v0.0.0'))
+      .catch(() => document.getElementById('verBadge').textContent = 'Version: v0.0.0');
+  </script>
 </body>
 </html>
